@@ -5,11 +5,16 @@ from flask import redirect
 from flask import render_template
 from models import db
 from flask_wtf.csrf import CSRFProtect
-from forms import RegisterForm
+from forms import RegisterForm, LoginForm
 
 from models import Fcuser
 
 app = Flask(__name__)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
